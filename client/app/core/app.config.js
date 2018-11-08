@@ -24,18 +24,18 @@
         var date = new Date();
         var year = date.getFullYear();
         var app = {
-            brand: 'Documenter',
-            user: 'ElMan',
-            year: year,
+            brand: 'Mini Market',
+            user: 'Market team',
+            year: 2018,
             pageTransition: pageTransitionOpts[0],          // 0, 1, 2, 3... and build your own
             layoutBoxed: false,                             // true, false
             navCollapsed: false,                            // true, false
             navBehind: true,                               // true, false
             fixedHeader: true,                              // true, false
             sidebarWidth: 'middle',                         // small, middle, large      
-            theme: 'gray',                                 // light, gray, dark
-            colorOption: '16',                               // 11,12,13,14,15,16; 21,22,23,24,25,26; 31,32,33,34,35,36
-            link: 'https://themeforest.net/item/material-design-angular-admin-app/17067522'
+            theme: 'light',                                 // light, gray, dark
+            colorOption: '32',                               // 11,12,13,14,15,16; 21,22,23,24,25,26; 31,32,33,34,35,36
+            link: 'https://www.uninorte.edu.co'
         };
         var color = {
             primary:    'rgba(33,150,243,.7)', // #2196F3
