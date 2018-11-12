@@ -1,4 +1,4 @@
-<ul class="nav" data-accordion-nav data-slim-scroll data-highlight-active data-append-sub-menu-icon>
+<ul class="nav" data-accordion-nav data-slim-scroll data-highlight-active data-append-sub-menu-icon ng-controller="DashboardCtrl">
     <li>
         <div layout-gt-sm="row">
             <md-input-container class="md-block" flex-gt-sm>
@@ -15,23 +15,7 @@
     <li>
         <a md-button aria-label="menu" href="#/app/table"><i class="nav-icon material-icons">list</i>Categorias</a>
         <ul>
-            <li><a class="filter-check" md-button aria-label="menu" href="#/app/dashboard"><md-checkbox md-no-ink aria-label="Checkbox No Ink" ng-model="checkbox.cb5" class="md-primary">Categoria 1</md-checkbox></a></li>
-            <li><a class="filter-check" md-button aria-label="menu" href="#/app/dashboard"><md-checkbox md-no-ink aria-label="Checkbox No Ink" ng-model="checkbox.cb5" class="md-primary">Categoria 2</md-checkbox></a></li>
-            <li><a class="filter-check" md-button aria-label="menu" href="#/app/dashboard"><md-checkbox md-no-ink aria-label="Checkbox No Ink" ng-model="checkbox.cb5" class="md-primary">Categoria 3</md-checkbox></a></li>
+            <li ng-repeat="cat in categories"><md-checkbox md-no-ink aria-label="Checkbox No Ink" ng-model="cat.checked" class="md-primary">{{cat.name}}</md-checkbox></li>
         </ul>
-    </li>
-
-    <li>
-        <md-input-container class="md-block" flex-gt-sm>
-            <label>Precio minimo</label>
-            <input ng-model="user.firstName">
-        </md-input-container>
-    </li>
-
-    <li>
-        <md-input-container class="md-block" flex-gt-sm>
-            <label>Precio maximo</label>
-            <input ng-model="user.firstName">
-        </md-input-container>
     </li>
 </ul>

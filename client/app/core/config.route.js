@@ -16,17 +16,20 @@ angular.module('app')
                 // Home
                 .state('app.dashboard', {
                     url: '/dashboard',
-                    templateUrl: "app/dashboard/dashboard.html"
+                    templateUrl: "app/dashboard/dashboard.html",
+                    controller: "DashboardCtrl"
                 })
 
                 .state('signin', {
                     url: '/signin',
-                    templateUrl: 'app/page-extra/signin.html'
+                    templateUrl: 'app/page-extra/signin.html',
+                    controller: 'signinCtlr'
                 })
 
                 .state('admin', {
                     url:'/admin',
-                    templateUrl: 'app/admin/admin.html'
+                    templateUrl: 'app/admin/admin.html',
+                    controller: 'adminCtlr'
                 })
             ;
         }

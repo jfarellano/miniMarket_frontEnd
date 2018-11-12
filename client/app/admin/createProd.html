@@ -1,0 +1,42 @@
+<md-toolbar>
+  <div class="md-toolbar-tools scio-bar">
+    <h4>Categoria</h4>
+    <span flex></span>
+    <md-button class="md-icon-button" ng-click="cancel()">
+      <md-icon class="material-icons">close</md-icon>
+    </md-button>
+  </div>
+</md-toolbar>
+<md-dialog-content class="modal_form">
+    <div class="ui-wizard-content">
+        <form name="catForm">
+            <md-input-container class="md-block" flex-gt-sm>
+                <label>Nombre</label>
+                <input ng-model="prod.name">
+            </md-input-container>
+            <md-input-container class="md-block" flex-gt-sm>
+                <label>Precio</label>
+                <input type="number" ng-model="prod.price">
+            </md-input-container>
+            <md-input-container class="md-block">
+                <label>Description</label>
+                <textarea ng-model="prod.description" md-maxlength="150" rows="5" md-select-on-focus></textarea>
+			</md-input-container>
+			<md-input-container class="flex-gt-xs" flex-gt-xs>
+                <label>Categoria</label>
+                <md-select ng-model="prod.category_id" required>
+                    <md-option ng-repeat="cat in categories" value="{{cat.id}}">
+                        {{cat.name}}
+                    </md-option>
+                </md-select>
+            </md-input-container>
+			<md-input-container class="md-block">
+                <md-button class="md-raised btn-w-md md-primary" ngf-select required ng-model="prod.image">Seleccionar foto</md-button>
+            </md-input-container>
+        </form>
+    </div>
+</md-dialog-content>
+<md-dialog-actions>
+    <md-button class="md-raised btn-w-md" ng-click="cancel()">Cancelar</md-button>
+    <md-button class="md-raised btn-w-md md-primary" ng-click="save()" ng-disabled="!catForm.$valid">Agregar</md-button>
+</md-dialog-actions>

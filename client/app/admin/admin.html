@@ -1,7 +1,7 @@
 <div class="app-content-wrapper">
     <div class="app-content">
     	<section class="page-with-tabs">
-    		<md-button class="pull-right md-primary to-commerce" >Ir al comercio</md-button>
+    		<md-button class="pull-right md-primary to-commerce" href="/#">Ir al comercio</md-button>
 		    <div class="page-title">
 		        <h2>Panel administrativo</h2>
 		    </div>
@@ -10,13 +10,13 @@
 		        <md-tab>
 		            <md-tab-label>Categorias</md-tab-label>
 		            <md-tab-body>
-		                <div class="box box-default">
+		            	<md-button class="md-primary" ng-click="createCat($event)">Agregar nueva</md-button>
+		                <div class="box box-default" ng-repeat="cat in categories">
 		                    <div class="box-body no-padding">
 		                        <md-list>
-		                            <md-list-item ng-click="">
-		                                <p>Categoria1</p>
-		                                <md-icon ng-click="" aria-label="Edit" class="md-secondary material-icons">edit</md-icon>
-		                                <md-icon ng-click="" aria-label="Edit" class="md-secondary material-icons">clear</md-icon>
+		                            <md-list-item ng-click="showCat(cat, $event)">
+		                                <p>{{cat.name}}</p>
+		                                <md-icon ng-click="deleteCat(cat.id)" ng-if="cat.products.length == 0" aria-label="Edit" class="md-secondary material-icons">clear</md-icon>
 		                            </md-list-item>
 		                        </md-list>                          
 		                    </div>
@@ -26,13 +26,13 @@
 		        <md-tab>
 		            <md-tab-label>Productos</md-tab-label>
 		            <md-tab-body>
-		                <div class="box box-default">
+		                <md-button class="md-primary" ng-click="showProd($event)">Agregar nuevo</md-button>
+		                <div class="box box-default" ng-repeat="prod in products">
 		                    <div class="box-body no-padding">
 		                        <md-list>
-		                            <md-list-item ng-click="">
-		                                <p>Producto1</p>
-		                                <md-icon ng-click="" aria-label="Edit" class="md-secondary material-icons">edit</md-icon>
-		                                <md-icon ng-click="" aria-label="Edit" class="md-secondary material-icons">clear</md-icon>
+		                            <md-list-item>
+		                                <p>{{prod.name}}: ${{prod.price}}</p>
+		                                <md-icon ng-click="deleteProd(prod.id)" aria-label="Edit" class="md-secondary material-icons">clear</md-icon>
 		                            </md-list-item>
 		                        </md-list>                          
 		                    </div>
@@ -43,14 +43,17 @@
 		            <md-tab-label>Ordenes</md-tab-label>
 		            <md-tab-body>
 		                <div class="box-body no-padding">
-		                        <md-list>
-		                            <md-list-item ng-click="">
-		                                <p>Producto1</p>
-		                                <md-icon ng-click="" aria-label="Edit" class="md-secondary material-icons">edit</md-icon>
-		                                <md-icon ng-click="" aria-label="Edit" class="md-secondary material-icons">clear</md-icon>
-		                            </md-list-item>
-		                        </md-list>                          
-		                    </div>
+		                        <div class="box box-default">
+				                    <div class="box-body no-padding">
+				                        <md-list>
+				                            <md-list-item ng-click="">
+				                                <p>Orden1</p>
+				                                <md-icon ng-click="" aria-label="Edit" class="md-secondary material-icons">edit</md-icon>
+				                                <md-icon ng-click="" aria-label="Edit" class="md-secondary material-icons">clear</md-icon>
+				                            </md-list-item>
+				                        </md-list>                          
+				                    </div>
+								</div> 
 		            </md-tab-body>
 		        </md-tab>
 		    </md-tabs>

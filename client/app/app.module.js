@@ -6,7 +6,8 @@
         'ui.router'
         ,'ngAnimate'
         ,'ngAria'
-        ,'ngMessages'
+        ,'ngStorage'
+        ,'ngFileUpload'
 
         // 3rd Party Modules
         ,'oc.lazyLoad'

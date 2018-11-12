@@ -5,21 +5,23 @@
                 <div class="card bg-white">
                     <div class="card-content">
                         <div class="logo">
-                            <a href="#/">Login</a>
+                            <a href="#/">Admin Login</a>
                         </div>
 
                         <form name="material_login_form" class="md-form-auth form-validation">
                             <fieldset>
                                 <md-input-container class="md-block" flex-gt-sm>
                                       <label>Usuario</label>
-                                      <input>
+                                      <input ng-model="valid.user">
                                 </md-input-container>
                                 <md-input-container class="md-block" flex-gt-sm>
                                     <label>Contraseña</label>
-                                    <input type="password">
+                                    <input type="password" ng-model="valid.pass">
                                 </md-input-container>
 
-                                <md-button class="md-raised md-primary">Login</md-button>
+                                <div class="row"><p2 ng-if="notAuth" style="color:red;margin-left: 20px;">Credenciales no validas</p2></div>
+
+                                <md-button class="md-raised md-primary" ng-click="login()">Login</md-button>
                             </fieldset>
                         </form>
                     </div>
