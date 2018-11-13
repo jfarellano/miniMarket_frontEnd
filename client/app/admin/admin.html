@@ -32,6 +32,7 @@
 		                        <md-list>
 		                            <md-list-item>
 		                                <p>{{prod.name}}: ${{prod.price}}</p>
+		                                <md-icon ng-click="editProd(prod)" aria-label="Edit" class="md-secondary material-icons">edit</md-icon>
 		                                <md-icon ng-click="deleteProd(prod.id)" aria-label="Edit" class="md-secondary material-icons">clear</md-icon>
 		                            </md-list-item>
 		                        </md-list>                          

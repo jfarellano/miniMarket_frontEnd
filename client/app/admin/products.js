@@ -12,6 +12,14 @@ angular.module('app')
     },
     get: function(id){
      	return $http.get(URL.back+'/products/'+id) 
+    },
+    update: function(prod){
+        if (typeof prod.image  == 'object') {
+            return Upload.upload({method: 'PUT', url: URL.back+'/products/'+prod.id, data: prod})
+        }else{
+            prod = {id: prod.id, name: prod.name, description: prod.description, price: prod.price, category_id: prod.category.id}
+            return $http.put(URL.back+'/products/'+prod.id, prod)
+        }
     }
   }
 }]);

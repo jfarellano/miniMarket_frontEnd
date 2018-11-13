@@ -19,6 +19,7 @@
         }
 
         $scope.cancel = function(){
+            $scope.edit = false
             $scope.cat = {}
             $scope.prod = {}
             dialog.cancel()
@@ -80,6 +81,13 @@
             })
         }
 
+        $scope.editProd = function(prod, ev){
+            $scope.prod = prod
+            prod.category_id = prod.category.id
+            $scope.edit = true
+            $scope.showProd(ev)
+        }
+
         $scope.showProd = function(ev){
             dialog.show({
                 templateUrl: '/app/admin/createProd.html',
@@ -88,14 +96,27 @@
                 targetEvent: ev,
                 escapeToClose: false
             }).then(function() {
-                console.log($scope.prod)
-                products.create($scope.prod).then(function(response){
-                    $scope.update()
-                },function(response){
-                    console.log(response.data)
-                    $scope.cancel()
-                    aletify.error('Hubo un error creando el producto')
-                })
+                console.log(typeof $scope.prod.image  == 'object')
+                if($scope.edit){
+                    products.update($scope.prod).then(function(response){
+                        $scope.update()
+                        $scope.cancel()
+                        aletify.success('Exito actualizando el producto')
+                    },function(response){
+                        console.log(response.data)
+                        $scope.cancel()
+                        aletify.error('Hubo un error editando el producto')
+                    })
+                }else{
+                    products.create($scope.prod).then(function(response){
+                        $scope.update()
+                        $scope.cancel()
+                    },function(response){
+                        console.log(response.data)
+                        $scope.cancel()
+                        aletify.error('Hubo un error creando el producto')
+                    })
+                }
             }, function() {
                 $scope.cancel()
             });
