@@ -40,6 +40,11 @@
             }
         }
 
+        $scope.clearGroup = function(id){
+            alertify.error(storage.cart.list[id].name + ' eliminado del carrito')
+            storage.cart.list.splice(id,1)
+        }
+
         var inCart = function(id){
             var exists = {exists: false, index: -1}
             storage.cart.list.forEach(function(prod, index){

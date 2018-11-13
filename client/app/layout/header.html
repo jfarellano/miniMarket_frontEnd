@@ -35,6 +35,12 @@
                                         <p>${{prod.price}}</p>
                                         <p>{{prod.qty}} unidades</p>
                                     </div>
+                                    <md-icon ng-click="clearGroup($index)" aria-label="Borrar producto" class="md-secondary material-icons" ng-class="{'md-primary': person.newMessage}">clear</md-icon>
+                                </md-list-item>
+                                <md-list-item class="md-2-line" ng-click="">
+                                    <div class="md-list-item-text">
+                                        <h3>Pagar</h3>
+                                    </div>
                                 </md-list-item>
                             </md-list>
                         </md-menu-content>
