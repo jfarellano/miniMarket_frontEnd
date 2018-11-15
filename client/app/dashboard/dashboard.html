@@ -1,12 +1,12 @@
 <div class="container-fluid with-maxwidth no-breadcrumbs chapter" ng-controller="DashboardCtrl">
     <div layout-gt-sm="row">
-            <md-input-container class="flex-gt-sm" flex-gt-sm>
+            <md-input-container class="flex-gt-sm col-md-9" flex-gt-sm>
                 <label>Busqueda</label>
-                <input ng-model="info.input">
+                <input ng-model="info.input" ng-disabled="searching">
             </md-input-container>
-            <md-input-container class="flex-gt-xs" flex-gt-xs>
+            <md-input-container class="flex-gt-xs col-md-3" flex-gt-xs>
                 <label>Categoria</label>
-                <md-select ng-model="info.category">
+                <md-select ng-model="info.category" ng-disabled="searching">
                     <md-option ng-repeat="cat in categories" value="{{cat.id}}">
                         {{cat.name}}
                     </md-option>

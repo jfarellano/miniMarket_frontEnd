@@ -1,6 +1,6 @@
-    angular.module('app').controller('DashboardCtrl', ['$scope', 'products', 'orders','URL', 'categories', '$localStorage',DashboardCtrl])
+    angular.module('app').controller('DashboardCtrl', ['$scope', 'products', 'orders','URL', 'categories', '$localStorage', '$mdDialog', '$window',DashboardCtrl])
 
-    function DashboardCtrl($scope, products, orders,URL, categories, storage) {
+    function DashboardCtrl($scope, products, orders,URL, categories, storage, dialog, $window) {
     	$scope.URL = URL.back
         $scope.searching = false
         if(storage.cart == null){
@@ -49,15 +49,20 @@
 
         $scope.placeOrder = function(){
             var list = storage.cart.list
+            $scope.order.products = []
             list.forEach(function(prod){
                 for (var i = 0; i < prod.qty; i++) {
-                    $scope.order.products.push[prod.id]
+                    $scope.order.products.push(prod.id)
                 }
             })
+            $scope.order.status = 'pagada'
+            $scope.order.name = 'nombre'
             orders.create($scope.order).then(function(response){
                 alertify.success('Tu orden ha sido exitosa, Gracias!')
-                storage.cart = {}
+                storage.cart = null
+                $window.location.reload();
             },function(response){
+                console.log(response.data)
                 alertify.error('Hubo un problema con tu orden intenta de nuevo')
             })
         }
@@ -87,5 +92,27 @@
                 $scope.searching = true
             }
             $scope.update()
+        }
+
+        $scope.showOrder = function(ev){
+            dialog.show({
+                templateUrl: '/app/dashboard/createOrder.html',
+                scope: $scope,
+                preserveScope: true,
+                targetEvent: ev,
+                escapeToClose: false
+            }).then(function() {
+                $scope.placeOrder()
+            }, function() {
+                $scope.cancel()
+            });
+        }
+
+        $scope.cancel = function(){
+            $scope.order = {}
+            dialog.cancel()
+        }
+        $scope.save = function(){
+            dialog.hide()
         }
     }
