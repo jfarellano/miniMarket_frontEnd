@@ -1,4 +1,21 @@
-<div class="container-fluid with-maxwidth no-breadcrumbs chapter">
+<div class="container-fluid with-maxwidth no-breadcrumbs chapter" ng-controller="DashboardCtrl">
+    <div layout-gt-sm="row">
+            <md-input-container class="flex-gt-sm" flex-gt-sm>
+                <label>Busqueda</label>
+                <input ng-model="info.input">
+            </md-input-container>
+            <md-input-container class="flex-gt-xs" flex-gt-xs>
+                <label>Categoria</label>
+                <md-select ng-model="info.category">
+                    <md-option ng-repeat="cat in categories" value="{{cat.id}}">
+                        {{cat.name}}
+                    </md-option>
+                </md-select>
+            </md-input-container>
+            <md-button class="md-fab md-mini md-primary search-button" ng-click="search()" aria-label="Buscar">
+                <md-icon class="material-icons">{{getIcon()}}</md-icon>
+            </md-button>
+        </div>
     <div class="row">
         <div class="col-lg-3 col-md-6" ng-click="addCart(prod)" ng-repeat="prod in products">
             <a class="item-card">

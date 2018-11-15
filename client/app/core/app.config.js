@@ -29,7 +29,7 @@
             year: 2018,
             pageTransition: pageTransitionOpts[0],          // 0, 1, 2, 3... and build your own
             layoutBoxed: false,                             // true, false
-            navCollapsed: false,                            // true, false
+            navCollapsed: true,                            // true, false
             navBehind: true,                               // true, false
             fixedHeader: true,                              // true, false
             sidebarWidth: 'middle',                         // small, middle, large      

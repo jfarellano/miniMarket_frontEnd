@@ -1,9 +1,6 @@
-(function () {
-    'use strict';
+    angular.module('app').controller('DashboardCtrl', ['$scope', 'products', 'orders','URL', 'categories', '$localStorage',DashboardCtrl])
 
-    angular.module('app').controller('DashboardCtrl', ['$scope', 'products', 'URL', 'categories', '$localStorage',DashboardCtrl])
-
-    function DashboardCtrl($scope, products, URL, categories, storage) {
+    function DashboardCtrl($scope, products, orders,URL, categories, storage) {
     	$scope.URL = URL.back
         $scope.searching = false
         if(storage.cart == null){
@@ -14,6 +11,9 @@
             if($scope.searching){
                 products.search($scope.info).then(function(response){
                     $scope.products = response.data
+                }, function(response){
+                    $scope.products = {}
+                    console.log(response.data)
                 })
             }else{
         		products.list().then(function(response){
@@ -47,6 +47,21 @@
             }
         }
 
+        $scope.placeOrder = function(){
+            var list = storage.cart.list
+            list.forEach(function(prod){
+                for (var i = 0; i < prod.qty; i++) {
+                    $scope.order.products.push[prod.id]
+                }
+            })
+            orders.create($scope.order).then(function(response){
+                alertify.success('Tu orden ha sido exitosa, Gracias!')
+                storage.cart = {}
+            },function(response){
+                alertify.error('Hubo un problema con tu orden intenta de nuevo')
+            })
+        }
+
         $scope.clearGroup = function(id){
             alertify.error(storage.cart.list[id].name + ' eliminado del carrito')
             storage.cart.list.splice(id,1)
@@ -59,17 +74,18 @@
             })
             return exists
         }
-
-        $scope.search = function(){
-            console.log($scope.info)
-            $scope.searching = true
-            $scope.update()
+        $scope.getIcon = function(){
+            if($scope.searching) return 'cancel'
+            else return 'search'
         }
 
-        $scope.cancelSearch = function(){
-            $scope.searching = false
-            $scope.info = {}
+        $scope.search = function(){
+            if($scope.searching){
+                $scope.searching = false
+                $scope.info = {}
+            }else{
+                $scope.searching = true
+            }
             $scope.update()
         }
     }
-})(); 

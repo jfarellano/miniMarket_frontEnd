@@ -16,8 +16,7 @@ angular.module('app')
                 // Home
                 .state('app.dashboard', {
                     url: '/dashboard',
-                    templateUrl: "app/dashboard/dashboard.html",
-                    controller: "DashboardCtrl"
+                    templateUrl: "app/dashboard/dashboard.html"
                 })
 
                 .state('signin', {
