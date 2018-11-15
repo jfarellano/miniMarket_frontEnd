@@ -1,0 +1,38 @@
+<md-toolbar>
+  <div class="md-toolbar-tools scio-bar">
+    <h4>Orden</h4>
+    <span flex></span>
+    <md-button class="md-icon-button" ng-click="cancel()">
+      <md-icon class="material-icons">close</md-icon>
+    </md-button>
+  </div>
+</md-toolbar>
+<md-dialog-content class="modal_form">
+	<h5>Nombre: {{order.username}}</h5>
+	<h5>Direccion: {{order.address}}</h5>
+	<h5>E-mail: {{order.email}}</h5>
+    <div class="ui-wizard-content">
+        <form name="catForm">
+			<md-input-container class="flex-gt-xs" flex-gt-xs>
+                <label>Estado</label>
+                <md-select ng-model="order.status">
+                    <md-option ng-repeat="state in states" value="{{state.name}}">
+                        {{state.name}}
+                    </md-option>
+                </md-select>
+            </md-input-container>
+        </form>
+    </div>
+
+    <md-list-item class="md-2-line" ng-repeat="prod in order.order_products">
+        <img ng-src="{{url + getProd(prod.product_id).image}}" class="md-avatar">
+        <div class="md-list-item-text">
+            <h3>{{ getProd(prod.product_id).name }}</h3>
+            <p>${{getProd(prod.product_id).price}}</p>
+        </div>
+	</md-list-item>
+</md-dialog-content>
+<md-dialog-actions>
+    <md-button class="md-raised btn-w-md" ng-click="cancel()">Cancelar</md-button>
+    <md-button class="md-raised btn-w-md md-primary" ng-click="save()" ng-disabled="!catForm.$valid">Guardar</md-button>
+</md-dialog-actions>

@@ -6,7 +6,7 @@
             </md-input-container>
             <md-input-container class="flex-gt-xs col-md-3" flex-gt-xs>
                 <label>Categoria</label>
-                <md-select ng-model="info.category" ng-disabled="searching">
+                <md-select ng-model="info.category" ng-disabled="searching || info.input == null">
                     <md-option ng-repeat="cat in categories" value="{{cat.id}}">
                         {{cat.name}}
                     </md-option>

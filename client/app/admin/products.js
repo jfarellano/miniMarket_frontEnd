@@ -1,6 +1,6 @@
 angular.module('app')
 .factory('products', ['$http', 'URL', 'Upload',function AnnexesFactory($http, URL, Upload) {
-  return {
+    return {
     list: function(){
      	return $http.get(URL.back+'/products')
     },

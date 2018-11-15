@@ -1,10 +1,10 @@
 (function () {
     'use strict';
 
-    angular.module('app').controller('adminCtlr', ['$scope', '$state', 'categories', 'products', '$mdDialog',adminCtlr])
+    angular.module('app').controller('adminCtlr', ['$scope', '$state', 'categories', 'products', 'orders','$mdDialog', 'URL',adminCtlr])
 
-    function adminCtlr ($scope, $state, categories, products, dialog) {
-
+    function adminCtlr ($scope, $state, categories, products, orders, dialog, URL) {
+        $scope.url = URL.back
         $scope.update = function(){
             categories.list().then(function(response){
                 $scope.categories = response.data
@@ -16,11 +16,24 @@
             }, function(response){
                 console.log(response.data)
             })
+            orders.list().then(function(response){
+                $scope.orders = response.data
+            }, function(response){
+                console.log(response.data)
+            })
         }
+
+        $scope.states = [
+            {name: 'pagada'},
+            {name: 'empacada'},
+            {name: 'enviada'},
+            {name: 'recibida'}
+        ]
 
         $scope.cancel = function(){
             $scope.edit = false
             $scope.cat = {}
+            $scope.order = {}
             $scope.prod = {}
             dialog.cancel()
         }
@@ -139,6 +152,44 @@
             }, function() {
                 $scope.cancel()
             });
+        }
+
+        $scope.showOrder = function(ev, order){
+            $scope.order = order
+            dialog.show({
+                templateUrl: '/app/admin/showOrder.html',
+                scope: $scope,
+                preserveScope: true,
+                targetEvent: ev,
+                escapeToClose: false
+            }).then(function() {
+                orders.update($scope.order).then(function(response){
+                    $scope.update()
+                    $scope.cancel()
+                    console.log('Entro')
+                    aletify.success('Exito actualizando el producto')
+                },function(response){
+                    console.log(response.data)
+                    $scope.cancel()
+                    aletify.error('Hubo un error editando el producto')
+                })
+            }, function() {
+                $scope.cancel()
+            });
+        }
+
+        $scope.deleteOrder = function(id){
+            orders.delete(id).then(function(response){
+                $scope.update()
+            }, function(response){
+                console.log(response.data)
+                $scope.cancel()
+                aletify.error('Hubo un error eliminando la orden')
+            })
+        }
+
+        $scope.getProd = function(id){
+            return $scope.products.filter(prod => prod.id == id)[0]
         }
 
     }

@@ -41,21 +41,21 @@
 						</div> 
 		            </md-tab-body>
 		        </md-tab>
+		        deleteOrder
 		        <md-tab>
 		            <md-tab-label>Ordenes</md-tab-label>
 		            <md-tab-body>
 		                <div class="box-body no-padding">
-		                        <div class="box box-default">
-				                    <div class="box-body no-padding">
-				                        <md-list>
-				                            <md-list-item ng-click="">
-				                                <p>Orden1</p>
-				                                <md-icon ng-click="" aria-label="Edit" class="md-secondary material-icons">edit</md-icon>
-				                                <md-icon ng-click="" aria-label="Edit" class="md-secondary material-icons">clear</md-icon>
-				                            </md-list-item>
-				                        </md-list>                          
-				                    </div>
-								</div> 
+		                    <div class="box box-default">
+			                    <div class="box-body no-padding">
+			                        <md-list>
+			                            <md-list-item ng-repeat="order in orders" ng-click="showOrder($event, order)">
+			                                <p>{{order.username}} - Estado de la orden: {{order.status}}</p>
+			                                <md-icon ng-click="deleteOrder(order.id)" aria-label="Edit" class="md-secondary material-icons">clear</md-icon>
+			                            </md-list-item>
+			                        </md-list>                     
+			                    </div>
+							</div> 
 		            </md-tab-body>
 		        </md-tab>
 		    </md-tabs>
