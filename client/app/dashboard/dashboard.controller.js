@@ -5,14 +5,21 @@
 
     function DashboardCtrl($scope, products, URL, categories, storage) {
     	$scope.URL = URL.back
+        $scope.searching = false
         if(storage.cart == null){
             storage.cart = {list:[]}
         }
         $scope.storage = storage.cart
     	$scope.update = function(){
-    		products.list().then(function(response){
-    			$scope.products = response.data
-    		})
+            if($scope.searching){
+                products.search($scope.info).then(function(response){
+                    $scope.products = response.data
+                })
+            }else{
+        		products.list().then(function(response){
+        			$scope.products = response.data
+        		})
+            }   
 
     		categories.list().then(function(response){
     			$scope.categories = response.data
@@ -51,6 +58,18 @@
                 if(id == prod.id) exists = {exist: true, index: index}
             })
             return exists
+        }
+
+        $scope.search = function(){
+            console.log($scope.info)
+            $scope.searching = true
+            $scope.update()
+        }
+
+        $scope.cancelSearch = function(){
+            $scope.searching = false
+            $scope.info = {}
+            $scope.update()
         }
     }
 })(); 

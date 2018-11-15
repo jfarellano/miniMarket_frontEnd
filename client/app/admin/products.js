@@ -20,6 +20,9 @@ angular.module('app')
             prod = {id: prod.id, name: prod.name, description: prod.description, price: prod.price, category_id: prod.category.id}
             return $http.put(URL.back+'/products/'+prod.id, prod)
         }
+    },
+    search: function(info){
+      return $http.post(URL.back+'/search', info)
     }
   }
 }]);

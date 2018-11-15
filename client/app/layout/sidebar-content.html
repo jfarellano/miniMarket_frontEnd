@@ -3,9 +3,9 @@
         <div layout-gt-sm="row">
             <md-input-container class="md-block" flex-gt-sm>
                 <label>Busqueda</label>
-                <input ng-model="user.firstName">
+                <input ng-model="info.input">
             </md-input-container>
-            <md-button class="md-fab md-mini md-primary search-button" aria-label="Buscar">
+            <md-button class="md-fab md-mini md-primary search-button" ng-click="search()" aria-label="Buscar">
                 <md-icon class="material-icons">search</md-icon>
             </md-button>
         </div>
@@ -15,7 +15,10 @@
     <li>
         <a md-button aria-label="menu" href="#/app/table"><i class="nav-icon material-icons">list</i>Categorias</a>
         <ul>
-            <li ng-repeat="cat in categories"><md-checkbox md-no-ink aria-label="Checkbox No Ink" ng-model="cat.checked" class="md-primary">{{cat.name}}</md-checkbox></li>
+            <md-radio-group class="ui-md-radio-group-inline" ng-model="info.category">
+                <li ng-repeat="cat in categories"><md-radio-button value="{{cat.id}}">{{cat.name}}</md-radio-button></li>
+            </md-radio-group> 
         </ul>
     </li>
+    <li><md-button aria-label="menu" ng-click="cancelSearch()"><i class="nav-icon material-icons">cancel</i>Cancelar Busqueda</md-button></li>
 </ul>

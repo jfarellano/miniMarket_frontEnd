@@ -12,6 +12,9 @@ angular.module('app')
     },
     get: function(id){
       return $http.get(URL.back+'/categories/'+id) 
+    },
+    update: function(cat){
+      return $http.put(URL.back+'/categories/'+cat.id, cat)
     }
   }
 }]);

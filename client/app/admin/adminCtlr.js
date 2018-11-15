@@ -51,6 +51,12 @@
             ) 
         }
 
+        $scope.editCat = function(cat, ev){
+            $scope.cat = cat
+            $scope.edit = true
+            $scope.createCat(ev)
+        }
+
         $scope.createCat = function(ev){
             dialog.show({
                 templateUrl: '/app/admin/createCat.html',
@@ -59,13 +65,26 @@
                 targetEvent: ev,
                 escapeToClose: false
             }).then(function() {
-                categories.create($scope.cat).then(function(response){
-                    $scope.update()
-                },function(response){
-                    console.log(response.data)
-                    $scope.cancel()
-                    aletify.error('Hubo un error creando la categoria')
-                })
+                if($scope.edit){
+                    categories.update($scope.cat).then(function(response){
+                        $scope.update()
+                        $scope.cancel()
+                        aletify.success('Exito actualizando la categoria')
+                    },function(response){
+                        console.log(response.data)
+                        $scope.cancel()
+                        aletify.error('Hubo un error editando la categoria')
+                    })
+                }else{
+                    categories.create($scope.cat).then(function(response){
+                        $scope.update()
+                        $scope.cancel()
+                    },function(response){
+                        console.log(response.data)
+                        $scope.cancel()
+                        aletify.error('Hubo un error creando la categoria')
+                    })
+                }
             }, function() {
                 $scope.cancel()
             });

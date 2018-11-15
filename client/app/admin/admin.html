@@ -16,6 +16,7 @@
 		                        <md-list>
 		                            <md-list-item ng-click="showCat(cat, $event)">
 		                                <p>{{cat.name}}</p>
+		                                <!-- <md-icon ng-click="editCat(cat)" aria-label="Edit" class="md-secondary material-icons">edit</md-icon> -->
 		                                <md-icon ng-click="deleteCat(cat.id)" ng-if="cat.products.length == 0" aria-label="Edit" class="md-secondary material-icons">clear</md-icon>
 		                            </md-list-item>
 		                        </md-list>                          
