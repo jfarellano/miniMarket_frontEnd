@@ -1,6 +1,6 @@
 <md-toolbar>
   <div class="md-toolbar-tools scio-bar">
-    <h4>Categoria</h4>
+    <h4>Paga tu pedido</h4>
     <span flex></span>
     <md-button class="md-icon-button" ng-click="cancel()">
       <md-icon class="material-icons">close</md-icon>
@@ -28,12 +28,12 @@
             </md-input-container>
             <md-input-container class="md-block" flex-gt-sm>
                 <label>cvv</label>
-                <input type="number" required>
+                <input type="number" ng-model="model" required>
             </md-input-container>
         </form>
     </div>
 </md-dialog-content>
 <md-dialog-actions>
     <md-button class="md-raised btn-w-md" ng-click="cancel()">Cancelar</md-button>
-    <md-button class="md-raised btn-w-md md-primary" ng-click="save()" ng-disabled="!catForm.$valid">Agregar</md-button>
+    <md-button class="md-raised btn-w-md md-primary" ng-click="save()" ng-disabled="!catForm.$valid">Pagar</md-button>
 </md-dialog-actions>

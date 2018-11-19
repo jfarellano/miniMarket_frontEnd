@@ -49,10 +49,10 @@
 
         $scope.placeOrder = function(){
             var list = storage.cart.list
-            $scope.order.products = []
+            $scope.order.product = []
             list.forEach(function(prod){
                 for (var i = 0; i < prod.qty; i++) {
-                    $scope.order.products.push(prod.id)
+                    $scope.order.product.push(prod.id)
                 }
             })
             $scope.order.status = 'pagada'
